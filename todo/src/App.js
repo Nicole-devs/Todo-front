@@ -1,71 +1,7 @@
-// import React from 'react';
-// import UserList from './UserList';
-// import UserForm from './UserForm';
-// import TaskForm from './TaskForm';
-
-// const App = () => {
-  // const [users, setUsers] = React.useState([]);
-
-  // React.useEffect(() => {
-  //   fetch('http://localhost:9292/users')
-  //     .then(response => response.json())
-  //     .then(users => setUsers(users));
-  // }, []);
-
-//   const handleAddUser= user => {
-//     const name1 ={name:user}
-//     console.log('Rendering UserList with users:', users);
-//     fetch('http://localhost:9292/users', {
-//       method: 'POST',
-//       headers: {
-//         'Content-Type': 'application/json',
-//       },
-//       body: JSON.stringify(name1),
-//     })
-//       .then(response => response.json())
-//       // .then(data => console.log(data))
-//       .then(user => setUsers(users => [...users, user]));
-      
-//   };
-
-//   const handleAddTask = task => {
-//     fetch('http://localhost:9292/tasks', {
-//       method: 'POST',
-//       headers: {
-//         'Content-Type': 'application/json',
-//       },
-//       body: JSON.stringify(task),
-//     })
-//       .then(response => response.json())
-//       .then(task => {
-//         setUsers(users =>
-//           users.map(user =>
-//             user.id === task.userId
-//               ? { ...user, tasks: [...user.tasks, task] }
-//               : user
-//           )
-//         );
-//       });
-//   };
-
-//   return (
-//     <>
-//       <h1>Users</h1>
-//       <UserList users={users} />
-//       <h2>Add a User</h2>
-//       <UserForm onAddUser={handleAddUser} />
-//       <h2>Add a Task</h2>
-//       <TaskForm users={users} onAddTask={handleAddTask} />
-//     </>
-//   );
-// };
-
-// export default App;
-
-
 import React from 'react';
 
-function App (){
+
+export default function App (){
   const [users, setUsers] = React.useState([]);
   const [name, setName] = React.useState('');
   const [updateName, setUpdateName] = React.useState('');
@@ -79,7 +15,7 @@ function App (){
   console.log (users)
 
   function handleSubmit(e){
-    e.preventDefault()
+    e.preventDefault();
     fetch('http://localhost:9292/users', {
       method: 'POST',
             headers: {
@@ -96,9 +32,9 @@ function App (){
 
 
   function handleUpdate(e){
-    e.preventDefault()
+    e.preventDefault();
     fetch('http://localhost:9292/users', {
-      method: 'POST',
+      method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'
               },
@@ -107,7 +43,7 @@ function App (){
     })
     .then(response => response.json())
     .then(data=>{
-    setUpdateName([...name, data])
+    setUpdateName([updateName, data])
     })
   }
 
@@ -156,4 +92,4 @@ function App (){
   )
 }
 
-export default App;
+
